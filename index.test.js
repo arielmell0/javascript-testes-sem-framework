@@ -21,3 +21,19 @@ import Service from './service.js'
         'it should throw an error with wrong description'
     )   
 }
+
+// should save product successfully 
+{
+    const params = {
+        description: 'my product',
+        id: 1,
+        price: 1000
+    }
+
+    const product = new Product({
+        onCreate: (msg) => console.log('chamou onCreate', msg),
+        service: new Service()
+    })
+
+    const result = await product.create(params)
+}
