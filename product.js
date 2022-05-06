@@ -11,7 +11,9 @@ export default class Product {
 
     // data = { description, id, price }
     #isValid (data) {
-
+        if(data.description.length < 5) {
+            throw new Error('description must be higher than 5')
+        }
     }
     async create(data) {
         this.#isValid(data)
