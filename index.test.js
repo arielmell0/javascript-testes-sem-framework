@@ -1,4 +1,4 @@
-import assert from 'assert.js'
+import assert from 'assert'
 import Product from './product.js'
 import Service from './service.js'
 
