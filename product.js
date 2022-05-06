@@ -31,6 +31,8 @@ export default class Product {
                 ...next
             }
         }, {})
+
+        return finalObject
     }
 
     async create(data) {
