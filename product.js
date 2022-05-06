@@ -15,9 +15,30 @@ export default class Product {
             throw new Error('description must be higher than 5')
         }
     }
+
+    // data = { description, id, price }
+    #upperCaseStrings(data) {
+        const finalObject = Reflect.ownKeys(data)
+        .map(key => {
+            const item = data[key]
+            return {
+                [key]: typeof item === 'string' ? item.toUpperCase() : item
+            }
+        })
+        .reduce((prev, next) => {
+            return {
+                ...prev,
+                ...next
+            }
+        }, {})
+    }
+
     async create(data) {
         this.#isValid(data)
-        const message = await this.service.save(data)
+        const mappedObject = this.#upperCaseString(data)
+        console.log({ mappedObject })
+        const message = await this.service.save(mappedObject)
+        this.source.emit('create', mappedObject)
         return message.toUpperCase()
     }
 }
